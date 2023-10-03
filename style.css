@@ -1,0 +1,28 @@
+.card-body {
+  height: 5rem; 
+  width: 5rem; 
+  background-color: pink;
+  color: blue;
+  
+}
+
+.cardContainer {
+  display:inline-flex; 
+}
+
+.card-img {
+  height: 3rem; 
+  width: 3rem; 
+  object-fit: contain;
+
+}
+
+.card {
+  height: 18rem; 
+  width: 18rem; 
+  
+}
+
+.card-text {
+  word-break: break-all;
+}
