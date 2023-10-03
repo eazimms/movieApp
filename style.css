@@ -1,8 +1,7 @@
 .card-body {
-  height: 5rem; 
-  width: 5rem; 
-  background-color: pink;
-  color: blue;
+  display: inline-block; 
+  object-fit: contain;
+  border-color: black;
   
 }
 
@@ -23,6 +22,7 @@
   
 }
 
-.card-text {
+#card-text {
   word-break: break-all;
+  display: block;
 }

@@ -87,6 +87,9 @@ function createCard(movieData){
   let bodyText = $('<p>').text(movieData.plot).appendTo(cardBody).addClass("card-text"); 
   let ourRatingTxt= $('<p>').text("Our Rating: " + movieData.oRating).appendTo(cardBody).addClass("card-text"); 
 
+  //This is working properly now, need to adjust CSS elements to properly fit within the card body but on the right track. 
+  
+
   console.log(movieData.poster); 
   console.log(movieData.plot);
   
