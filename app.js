@@ -38,7 +38,7 @@ console.log("ready!")
 $("#postMovieBtn").on("click", function(event){
   event.preventDefault(); 
   let movie =$("#movieName").val().trim(); 
-  let ourRating = $("#movieRating").val(); 
+  let ourRating = $("#movieRating").val().trim(); 
   const queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=5cace7de";
   
   
@@ -88,12 +88,15 @@ function createCard(movieData){
   let ourRatingTxt= $('<p>').text("Our Rating: " + movieData.oRating).appendTo(cardBody).addClass("card-text"); 
 
   //This is working properly now, need to adjust CSS elements to properly fit within the card body but on the right track. 
-  
+
 
   console.log(movieData.poster); 
   console.log(movieData.plot);
   
 }
+
+//Need to add code for a modal that will bring up more infomration on the movie. Will need to grab data from the movieData Object. Possibly move the 
+//summary to this modal instead of the main page. 
 
 
 

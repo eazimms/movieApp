@@ -51,14 +51,15 @@
             <div class="input-group mb-3" id="movieRatingInput">
               <label class="input-group-text" for="movieRating">Movie Rating</label>
               <select class="form-select" id="movieRating">
+                <!--Need to make rating required-->
                 <option selected id="selectedRating"> Our Rating:</option>
-                <option value="A">A: Amazing</option>
-                <option value="B">B: Great</option>
-                <option value="C">C: Okay</option>
-                <option value="D">D: Eh</option>
-                <option value="F">F: Awful</option>
-                <option value="I">I: Italian....very Italian</option>
-                <option value="Z">Truly awful, beyond rating</option>
+                <option>A: Amazing</option>
+                <option>B: Great</option>
+                <option>C: Okay</option>
+                <option>D: Eh</option>
+                <option>F: Awful</option>
+                <option>I: Italian....very Italian</option>
+                <option>Truly awful, beyond rating</option>
               </select>
             </div>
             
@@ -66,11 +67,13 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Nevermind</button>
-          <button type="button" class="btn btn-primary" id="postMovieBtn">Enter Movie</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="postMovieBtn">Enter Movie</button>
         </div>
       </div>
     </div>
   </div>
+
+  <!--Need to add a modal to pop up with more information about the movie, possibly move the summary and more information to that modal-->
 
   <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <script type="text/javascript" src="app.js"></script>

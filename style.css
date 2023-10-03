@@ -5,13 +5,14 @@
   
 }
 
-.cardContainer {
+#cardContainer {
   display:inline-flex; 
+  /*Need to add spacing between the boxes*/
 }
 
 .card-img {
-  height: 3rem; 
-  width: 3rem; 
+  height: 5rem; 
+  width: 5rem; 
   object-fit: contain;
 
 }
@@ -25,4 +26,6 @@
 #card-text {
   word-break: break-all;
   display: block;
+  /*Word break needs to change, some lines still overlapping the next div eleement*/
 }
+
