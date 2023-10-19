@@ -1,0 +1,40 @@
+.card-body {
+  display: inline-block; 
+  object-fit: contain;
+  border-color: black;
+  border-width: 5rem;  
+}
+
+.card-group {
+  gap: 5rem;
+  display: inline-flex;  
+}
+
+#cardContainer {
+  display:inline-flex; 
+  /*Need to add spacing between the boxes*/
+}
+
+.card-img {
+  height: 5rem; 
+  width: 5rem; 
+  object-fit: contain;
+
+}
+
+.card {
+  height: 18rem; 
+  width: 18rem; 
+  overflow: clip;
+  
+  border-color: black;
+  
+}
+
+.card-text {
+  word-break: break-all;
+  overflow: hidden;
+  display: block;
+  /*Word break needs to change, some lines still overlapping the next div eleement*/
+}
+
