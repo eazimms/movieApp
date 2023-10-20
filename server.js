@@ -30,13 +30,13 @@ app.get("/", function(req, res) {
 
 
 
-// connection.connect(function(err) {
-//   if(err) {
-//     console.error("error connecting: " + err.stack); 
-//     return; 
+//  connection.connect(function(err) {
+//    if(err) {
+//      console.error("error connecting: " + err.stack); 
+//      return; 
 //   }
-//   console.log("Connected as id: " + connection.threadId); 
-// })
+//    console.log("Connected as id: " + connection.threadId); 
+// }); 
 
 app.use('/', router); 
 
