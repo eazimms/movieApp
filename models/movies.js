@@ -1,6 +1,6 @@
 var orm = require ("../config/ORM.js"); 
 
-var movie = {
+var movies = {
     all: function (cb){
         orm.all("movies", function(res) {
             cb(res); 

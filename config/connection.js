@@ -1,12 +1,12 @@
 const mysql = require('mysql');
 
-app.use(express.json); 
+
 //Mysql stuff, will update later, need to create schema for this as well
 const connection= mysql.createConnection({
   host: "localhost", 
   port: 3306, 
   user: "root", 
-  password: "!", 
+  password: "R0senrot!", 
   database: "movies_db"
 }); 
 
