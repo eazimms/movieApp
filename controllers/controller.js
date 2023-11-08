@@ -4,11 +4,15 @@ const router = express.Router();
 
 const movies = require("../models/movies.js"); 
 
+
+
+
 router.get("/", function(req, res){ 
-    res.sendFile("../public/index.html")
+    
+    // res.sendFile("../public/index.html")
     movies.all(function(data){
         let mObject = {
-            movies: data
+            movData
         };
         console.log(mObject)
         res.render("index", mObject); 

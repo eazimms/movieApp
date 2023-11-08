@@ -8,7 +8,7 @@ var movies = {
     }, 
 
     create: function(cols, vals, cb) {
-        orm.create("movies", cols, valus, function(res){
+        orm.create("movies", cols, vals, function(res){
             cb(res); 
         });
     }, 

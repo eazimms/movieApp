@@ -1,3 +1,5 @@
+// const { post } = require("../../controllers/controller");
+
 $(document).ready(function(){
 console.log("ready!")
 }); 
@@ -12,74 +14,89 @@ console.log("ready!")
 //Function to add movie, need to add methodolgy for grabbing the movie info, and posting within the card but adding the card is working. 
 //Need to change the Css to display in line as well. 
 
+let movData = {
+  title:"",
+  poster: "",
+  plot: "",
+  oRating: "",
+  rtRating: "",
+  addDate: "",
 
-
-//event trigger for adding the movie. Need to change Css to make inline. 
-$("#postMovieBtn").on("click", function(event){
-  event.preventDefault(); 
-  let movie =$("#movieName").val().trim(); 
-  let ourRating = $("#movieRating").val().trim(); 
-  const queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=5cace7de";
-  
-  
-  $.ajax({
-    type: "GET",
-    url: queryURL,
-    success: function (response) {
-      //Okay this is working and grabbing the proper information. Need to add our information and also push into a card. 
-      
-      // console.log(movie)
-      console.log(response)
-      // console.log(ourRating)
-
-      let movieData = {
-        title: response.Title,
-        poster:  response.Poster,
-        plot: response.Plot,
-        rating: response.Ratings[1].Value,
-        oRating: ourRating 
-
-
-      }
-
-      createCard(movieData); 
-      
-      
-      
-    }
-       
-  })
-}); 
-
-function createCard(movieData){
-  let card= $('<div>').addClass("card").appendTo("#cardGroup");
-  let cardBody = $('<div>').addClass("card-body").appendTo(card); 
-  let bodyTitle =$('<h5>').text(movieData.title).appendTo(cardBody).addClass("card-title"); 
-  let cardImage = $('<img>').attr({src: movieData.poster}).appendTo(cardBody).addClass("card-img");
-  // let bodyText = $('<p>').text(movieData.plot).appendTo(cardBody).addClass("card-text"); 
-  //Removing the plot from the initial card as I hate CSS and text keeps overflowing
-  let bodyText=$('<p>').text("Rotten Tomatoes Score: " +movieData.rating).appendTo(cardBody).addClass('card-text'); 
-  //Adding Rotten tomatoes score to the card. 
-  let ourRatingTxt= $('<p>').text("Our Rating: " + movieData.oRating).appendTo(cardBody).addClass("card-text"); 
-
-  //This is working properly now, need to adjust CSS elements to properly fit within the card body but on the right track. 
-
-
-  console.log(movieData.poster); 
-  console.log(movieData.plot);
   
 }
 
 
 
-//Need to add code for a modal that will bring up more infomration on the movie. Will need to grab data from the movieData Object. Possibly move the 
-//summary to this modal instead of the main page. 
+//event trigger for adding the movie. Need to change Css to make inline. 
+$("#postMovieBtn").on("click", function(event, movData){
+  event.preventDefault(); 
+  let movie =$("#movieName").val().trim(); 
+  let ourRating = $("#movieRating").val().trim(); 
+  let addDate = "1";
+  
+  //Get request
+  $.ajax({
+    type: "GET",
+    url: "https://www.omdbapi.com/?t=" + movie + "&apikey=5cace7de",
+    success: function (response) {
+      //Okay this is working and grabbing the proper information. Need to add our information and also push into a card. 
+      
+      
+
+       
+      
+
+      
+      
+
+      // let movData = {
+      //   title: response.Title,
+      //   poster:  response.Poster,
+      //   plot: response.Plot,
+      //   rating: response.Ratings[1].Value,
+      //   oRating: ourRating 
+
+
+      // }
+      createCard(movData); 
+      
+      
+      
+    }
+    
+  }).then((movData) =>{
+    $.ajax("/api/movies", {
+      type: "POST",
+      data: movData
+    }).then(
+      function() {
+        console.log("created new cat");
+        // Reload the page to get the updated list
+        location.reload();
+      }
+    );
+  })
+
+  
+  
+})
 
 
 
+function createCard(movData){
+  let card= $('<div>').addClass("card").appendTo("#cardGroup");
+  let cardBody = $('<div>').addClass("card-body").appendTo(card); 
+  let bodyTitle =$('<h5>').text(movData.title).appendTo(cardBody).addClass("card-title"); 
+  let cardImage = $('<img>').attr({src: movData.poster}).appendTo(cardBody).addClass("card-img");
+  // let bodyText = $('<p>').text(movieData.plot).appendTo(cardBody).addClass("card-text"); 
+  //Removing the plot from the initial card as I hate CSS and text keeps overflowing
+  let bodyText=$('<p>').text("Rotten Tomatoes Score: " +movData.rating).appendTo(cardBody).addClass('card-text'); 
+  //Adding Rotten tomatoes score to the card. 
+  let ourRatingTxt= $('<p>').text("Our Rating: " + movData.oRating).appendTo(cardBody).addClass("card-text"); 
+
+  //This is working properly now, need to adjust CSS elements to properly fit within the card body but on the right track. 
 
 
-
-
-
-
+  
+  
+}
