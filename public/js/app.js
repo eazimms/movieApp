@@ -14,16 +14,13 @@ console.log("ready!")
 //Function to add movie, need to add methodolgy for grabbing the movie info, and posting within the card but adding the card is working. 
 //Need to change the Css to display in line as well. 
 
-let movData = {
-  title:"",
-  poster: "",
-  plot: "",
-  oRating: "",
-  rtRating: "",
-  addDate: "",
+// let movData = {
+//   title:"",
+//   oRating: "",
+  
 
   
-}
+// }
 
 
 
@@ -31,55 +28,54 @@ let movData = {
 $("#postMovieBtn").on("click", function(event, movData){
   event.preventDefault(); 
   let movie =$("#movieName").val().trim(); 
-  let ourRating = $("#movieRating").val().trim(); 
-  let addDate = "1";
+  let oRating = $("#movieRating").val().trim(); 
+  let addDate = "1"
+  
   
   //Get request
   $.ajax({
     type: "GET",
     url: "https://www.omdbapi.com/?t=" + movie + "&apikey=5cace7de",
     success: function (response) {
-      //Okay this is working and grabbing the proper information. Need to add our information and also push into a card. 
-      
-      
+      //Okay this is working and grabbing the proper information. Need to add our information and also push into a card.   
 
-       
-      
-
-      
-      
-
-      // let movData = {
-      //   title: response.Title,
-      //   poster:  response.Poster,
-      //   plot: response.Plot,
-      //   rating: response.Ratings[1].Value,
-      //   oRating: ourRating 
+      let movData = {
+        title: response.Title,
+        poster:  response.Poster,
+        plot: response.Plot,
+        rating: response.Ratings[1].Value,
+        ourRating: oRating,
+        // addedDate: "1"
 
 
-      // }
+      }
+      
+
+      
       createCard(movData); 
-      
-      
+      console.log(movData);
+      posMovie(movData); 
       
     }
     
-  }).then((movData) =>{
-    $.ajax("/api/movies", {
-      type: "POST",
-      data: movData
-    }).then(
-      function() {
-        console.log("created new cat");
-        // Reload the page to get the updated list
-        location.reload();
-      }
-    );
   })
 
   
   
 })
+
+function posMovie(movData){
+  $.ajax("/api/movies", {
+    type: "POST",
+    data: movData
+    
+  }); 
+  console.log(movData.title); 
+  console.log(movData.ourRating);
+  console.log(movData.plot); 
+  console.log(movData.rating); 
+  console.log('getting here!'); 
+}
 
 
 

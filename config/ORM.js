@@ -25,7 +25,7 @@ function objtoSql(ob){
             if (typeof value === "string" && value.indexOf(" ") >= 0){
                 value = "'" + value + "'"; 
 
-                arr.push(Lkey + "=" + value); 
+                arr.push(key + "=" + value); 
             }
 
         }

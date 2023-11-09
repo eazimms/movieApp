@@ -21,9 +21,11 @@ router.get("/", function(req, res){
 
 router.post("/api/movies", function(req, res){
     movies.create([
-        "movie", "ourRating", "rottenTomatoesRating", "addedDate"
+        // "id","movie", "ourRating", "plot", "rottenTomatoesRating", "addedDate"
+        "title", "poster", "plot", "rating", "ourRating"
     ], [
-        req.body.movie, req.bodyourRating, req.body.rottenTomatoesRating
+        // req.body.title, req.body.ourRating, req.body.rottenTomatoesRating
+        req.body.title, req.body.poster, req.body.plot, req.body.rating, req.body.ourRating, 
     ], function(result) {
         res.json({id: result.insertId});
     }
