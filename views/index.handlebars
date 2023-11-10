@@ -22,6 +22,16 @@
 <body>
   <!--Container for the cards-->
   <div class="container-lg" id="cardContainer">
-    <div class="card-group" id="cardGroup"></div>
+    <div class="card-group" id="cardGroup">
+      {{#each Movie}}
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title" value="{{title}}"></h5>
+          <img class="mov-img" src="{{poster}}"><img>
+          <p class="card-text">{{rating}}</p>
+          <p class="card-text">{{ourRating}}</p>
+        </div>
+      </div>
+    </div>
     
   <div>
