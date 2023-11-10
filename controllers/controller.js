@@ -11,11 +11,11 @@ router.get("/", function(req, res){
     
     // res.sendFile("../public/index.html")
     movies.all(function(data){
-        let mObject = {
-            movData
+        let hbsObject = {
+            movies: data
         };
-        console.log(mObject)
-        res.render("index", mObject); 
+        console.log(hbsObject)
+        res.render("index", hbsObject); 
     }); 
 }); 
 

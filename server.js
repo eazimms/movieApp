@@ -12,9 +12,16 @@ var app = express();
 
 //Using express.static middleware to serve static content for the app from the "assets" folder
 app.use(express.static("public")); 
+app.use(express.json()); 
 
 //Sets up Express app to handle data parsing
 app.use(express.urlencoded({extended: true})); 
+//Adding express handlebars
+
+var exphbs = require("express-handlebars");
+
+app.engine('.hbs', exphbs.engine({ extname: '.hbs', defaultLayout: "main"}))
+app.set("view engine", ".hbs");
 
 const routes = require("./controllers/controller.js"); 
 
@@ -23,10 +30,10 @@ app.use(routes);
 
 // app.use('/', router); 
 
-app.get("/", function(req, res) {
-  res.sendFile(path.join(__dirname+ "/index.html")); 
-  console.log("grabbing html")
-}); 
+// app.get("/", function(req, res) {
+//   res.sendFile(path.join(__dirname+ "/index.html")); 
+//   console.log("grabbing html")
+// }); 
 
 
 
