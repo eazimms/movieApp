@@ -1,27 +1,23 @@
-var orm = require ("../config/ORM.js"); 
-
-var movies = {
-    all: function (cb){
-        orm.all("movies", function(res) {
-            cb(res); 
-        }); 
-    }, 
-
-    create: function(cols, vals, cb) {
-        orm.create("movies", cols, vals, function(res){
-            cb(res); 
-        });
-    }, 
-    update: function(objColVals, condition, cb) {
-        orm.update("movies", objColVals, condition, function(res){
-            cb(res); 
-        }); 
-    }, 
-    delete: function(condition, cb) {
-        orm.delete("movies", condition, function(res){
-            cb(res); 
-        }); 
-    }
+module.exports = function(sequelize, DataTypes) {
+    let Post = sequelize.define("Post", {
+        title: {
+            type: DataTypes.STRING, 
+            allowNull: false, 
+            validate: {
+                len: [1]
+            }
+        },
+        body: {
+            type: DataTypes.TEXT, 
+            allowNull: false, 
+            validate: {
+                len: [1]
+            }
+        }, 
+        category: {
+            type: DataTypes. STRING,
+            defaultValue: "Fall2023"
+        }
+    });
+    return Post; 
 }; 
-
-module.exports= movies; 

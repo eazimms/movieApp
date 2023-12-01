@@ -1,46 +1,24 @@
-//A
 const express = require("express"); 
-const path = require("path"); 
 
+const app = express(); 
+const PORT = process.env.port || 8080; 
 
-const PORT= process.env.PORT || 9080; 
+const db = require("./models"); 
 
-// const router = express.Router(); 
-
-var app = express(); 
-//Port for the application
-
-//Using express.static middleware to serve static content for the app from the "assets" folder
-app.use(express.static("public")); 
+app.use(express.urlencoded({extended: true})); 
 app.use(express.json()); 
 
-//Sets up Express app to handle data parsing
-app.use(express.urlencoded({extended: true})); 
-//Adding express handlebars
+app.use(express.static("public")); 
 
-var exphbs = require("express-handlebars");
+//Routes
 
-app.engine('.hbs', exphbs.engine({ extname: '.hbs', defaultLayout: "main"}))
-app.set("view engine", ".hbs");
+require("./routes/api-routes")(app); 
+require("./routes/html-routes")(app); 
 
-const routes = require("./controllers/controller.js"); 
+//Syncing sequelize modesl then starting express app 
 
-app.use(routes); 
-
-
-// app.use('/', router); 
-
-// app.get("/", function(req, res) {
-//   res.sendFile(path.join(__dirname+ "/index.html")); 
-//   console.log("grabbing html")
-// }); 
-
-
-
-
-//Start the server 
-app.listen(PORT, function() {
-  //Log (server side) when the server is started
-
-  console.log("Server listening on port: " + PORT)
+db.sequelize.sync({ force: true}).then(function(){
+  app.listen(PORT, function() {
+    console.log("app listening on PORT " + PORT); 
+  }); 
 }); 
